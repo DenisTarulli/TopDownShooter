@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class PlayerAimWeapon : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer gunRenderer;
     private Transform aimTransform;
+
+    [SerializeField] private float bulletForce = 8f;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private float fireDelay;
+    //private float fireTime = 0f;
 
     private void Awake()
     {
@@ -14,6 +21,11 @@ public class PlayerAimWeapon : MonoBehaviour
     private void Update()
     {
         HandleAiming();
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            HandleShooting();
+        }
     }
 
     private void HandleAiming()
@@ -23,10 +35,22 @@ public class PlayerAimWeapon : MonoBehaviour
         Vector3 aimDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
+
+        if (Mathf.Abs(angle) > 90)
+            gunRenderer.flipY = true;
+        else
+            gunRenderer.flipY = false;        
     }
 
     private void HandleShooting()
     {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
+        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+
+        bulletRb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
+
+        Destroy(bullet, 1.5f);
     }
+
 }

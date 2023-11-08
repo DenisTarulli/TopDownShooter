@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private const string IS_ENEMY = "Enemy";
+    [SerializeField] private GameObject hitEffect;
+    //private const string IS_ENEMY = "Enemy";    
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(IS_ENEMY))
-        {
-            Destroy(gameObject);
-        }
+        GameObject hitFx = Instantiate(hitEffect, transform.position, Quaternion.identity);
+
+        Destroy(hitFx, 1f);
+        Destroy(gameObject);
     }
 }

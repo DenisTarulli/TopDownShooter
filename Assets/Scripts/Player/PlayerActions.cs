@@ -24,17 +24,8 @@ public class PlayerActions : MonoBehaviour
 
     private void Update()
     {
-        float xInput = 0f;
-        float yInput = 0f;
-
-        if (Input.GetKey(KeyCode.W))
-            yInput = 1f;
-        if (Input.GetKey(KeyCode.A))
-            xInput = -1f;
-        if (Input.GetKey(KeyCode.S))
-            yInput = -1f;
-        if (Input.GetKey(KeyCode.D))
-            xInput = 1f;
+        float xInput = Input.GetAxisRaw("Horizontal");
+        float yInput = Input.GetAxisRaw("Vertical");        
 
         moveDirection = new Vector3(xInput, yInput, 0f).normalized;
 
