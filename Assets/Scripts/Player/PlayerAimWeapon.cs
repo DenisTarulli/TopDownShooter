@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerAimWeapon : MonoBehaviour
@@ -10,8 +11,8 @@ public class PlayerAimWeapon : MonoBehaviour
     [SerializeField] private float bulletForce = 8f;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private float fireDelay;
-    //private float fireTime = 0f;
+    [SerializeField] private float fireRate = 15f;
+    private float nextTimeToFire = 0f;
 
     private void Awake()
     {
@@ -22,8 +23,9 @@ public class PlayerAimWeapon : MonoBehaviour
     {
         HandleAiming();
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
+            nextTimeToFire = Time.time + 1f / fireRate;
             HandleShooting();
         }
     }
@@ -35,7 +37,6 @@ public class PlayerAimWeapon : MonoBehaviour
         Vector3 aimDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
-
         if (Mathf.Abs(angle) > 90)
             gunRenderer.flipY = true;
         else
@@ -52,5 +53,4 @@ public class PlayerAimWeapon : MonoBehaviour
 
         Destroy(bullet, 1.5f);
     }
-
 }

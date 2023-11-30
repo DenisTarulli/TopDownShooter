@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 5841701338636738431}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.47, y: -0.89, z: 0.084372886}
+  m_LocalPosition: {x: 0, y: -0.44, z: 0.084372886}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &217592530407456780
 Animator:
   serializedVersion: 5
