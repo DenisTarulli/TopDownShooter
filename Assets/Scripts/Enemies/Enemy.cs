@@ -11,12 +11,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float currentHealth = 0f;
 
     private Animator animator;
+    private EnemyHealthBar healthBar;
 
     private void Start()
     {
         currentHealth = maxHealth;
         player = FindObjectOfType<PlayerActions>().transform;
         animator = GetComponent<Animator>();
+        healthBar = GetComponentInChildren<EnemyHealthBar>();
+
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     private void Update()
@@ -37,7 +41,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        Debug.Log(gameObject.name + " HP: " + currentHealth);
+
+        healthBar.SetHealth(currentHealth);
 
         if (currentHealth <= 0)
         {
