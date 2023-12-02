@@ -5,12 +5,20 @@ using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
-    private Transform player;
+    private GameObject player;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float damage = 12f;
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float currentHealth = 0f;
+    [SerializeField] private float attackRange = 2.5f;
+    private float distance;
+    private Vector3 moveDirection;
+    private bool isAttacking = false;
+
     private const string IS_PLAYER = "Player";
+    private const string X_DIR = "xDir";
+    private const string Y_DIR = "yDir";
+    private const string IS_ATTACKING = "isAttacking";
 
     private Animator animator;
     private EnemyHealthBar healthBar;
@@ -19,7 +27,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        player = FindObjectOfType<PlayerActions>().transform;
+        player = GameObject.FindWithTag(IS_PLAYER);
         playerStats = FindObjectOfType<PlayerStats>();
         animator = GetComponent<Animator>();
         healthBar = GetComponentInChildren<EnemyHealthBar>();
@@ -29,17 +37,22 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        if (!isAttacking)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
 
-        Vector3 moveDirection = (player.transform.position - transform.position).normalized;
+            moveDirection = (player.transform.position - transform.position).normalized;
 
-        SetAnimation(moveDirection);
+            SetAnimation(moveDirection);
+        }
+
+        distance = Vector3.Distance(transform.position, player.transform.position);
     }
 
     private void SetAnimation(Vector3 moveDir)
-    {
-        animator.SetFloat("xDir", moveDir.x);
-        animator.SetFloat("yDir", moveDir.y);
+    {     
+        animator.SetFloat(X_DIR, moveDir.x);
+        animator.SetFloat(Y_DIR, moveDir.y);
     }
 
     public void TakeDamage(float damage)
@@ -54,9 +67,31 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private IEnumerator Attack(Vector3 moveDir)
+    {
+        isAttacking = true;
+        animator.SetFloat(X_DIR, moveDir.x);
+        animator.SetFloat(Y_DIR, moveDir.y);
+        animator.SetLayerWeight(1, 1);
+        animator.SetBool(IS_ATTACKING, true);
+
+        yield return new WaitForSeconds(0.24f);
+
+        if (distance <= attackRange)
+            playerStats.TakeDamage(damage);
+
+        yield return new WaitForSeconds(0.36f);
+
+        animator.SetBool(IS_ATTACKING, false);
+        isAttacking = false;
+        animator.SetLayerWeight(1, 0);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag(IS_PLAYER)) return;
-        playerStats.TakeDamage(damage);
+
+        if (!isAttacking)
+            StartCoroutine(Attack(moveDirection));
     }
 }
