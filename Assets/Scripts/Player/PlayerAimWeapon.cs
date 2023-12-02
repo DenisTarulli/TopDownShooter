@@ -6,18 +6,18 @@ using UnityEngine;
 public class PlayerAimWeapon : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer gunRenderer;
+    private PlayerStats stats;
     private Transform aimTransform;
 
     [SerializeField] private float bulletForce = 8f;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private float fireRate = 15f;
-    public float bulletDamage = 15f;
     private float nextTimeToFire = 0f;
 
     private void Awake()
     {
         aimTransform = transform.Find("Aim");
+        stats = GetComponent<PlayerStats>();
     }
 
     private void Update()
@@ -26,7 +26,7 @@ public class PlayerAimWeapon : MonoBehaviour
 
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
-            nextTimeToFire = Time.time + 1f / fireRate;
+            nextTimeToFire = Time.time + 1f / stats.fireRate;
             HandleShooting();
         }
     }

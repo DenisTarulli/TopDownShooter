@@ -7,16 +7,20 @@ public class Enemy : MonoBehaviour
 {
     private Transform player;
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float damage = 12f;
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float currentHealth = 0f;
+    private const string IS_PLAYER = "Player";
 
     private Animator animator;
     private EnemyHealthBar healthBar;
+    private PlayerStats playerStats;
 
     private void Start()
     {
         currentHealth = maxHealth;
         player = FindObjectOfType<PlayerActions>().transform;
+        playerStats = FindObjectOfType<PlayerStats>();
         animator = GetComponent<Animator>();
         healthBar = GetComponentInChildren<EnemyHealthBar>();
 
@@ -48,5 +52,11 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag(IS_PLAYER)) return;
+        playerStats.TakeDamage(damage);
     }
 }

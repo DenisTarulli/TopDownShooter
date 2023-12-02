@@ -423,7 +423,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1554162785}
-  - {fileID: 1318783485}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1076,9 +1075,10 @@ GameObject:
   - component: {fileID: 754778637}
   - component: {fileID: 754778630}
   - component: {fileID: 754778636}
+  - component: {fileID: 754778638}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1156,8 +1156,6 @@ MonoBehaviour:
   bulletForce: 15
   bulletPrefab: {fileID: 8334186254695525936, guid: 68cc29d337fed4f4a9d80c673eb10e04, type: 3}
   firePoint: {fileID: 2145336061}
-  fireRate: 5
-  bulletDamage: 15
 --- !u!70 &754778637
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1193,6 +1191,23 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.32}
   m_Size: {x: 0.8955613, y: 1.229004}
   m_Direction: 0
+--- !u!114 &754778638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754778629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa075176746f2e4aa072d637ddfce97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 1554162787}
+  bulletDamage: 15
+  fireRate: 10
+  maxHealth: 100
+  currentHealth: 0
 --- !u!1 &777107252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2220,16 +2235,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318783484}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.20000002, y: 0.33333334, z: 0.33333334}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 209961321}
+  m_Father: {fileID: 1554162785}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 51.1, y: -40}
+  m_AnchoredPosition: {x: -0.34, y: -4.24}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1318783486
@@ -2734,8 +2749,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1554162785}
   - component: {fileID: 1554162786}
+  - component: {fileID: 1554162787}
   m_Layer: 5
-  m_Name: Health bar
+  m_Name: Player Health bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2755,12 +2771,13 @@ RectTransform:
   m_Children:
   - {fileID: 477458969}
   - {fileID: 1069493417}
+  - {fileID: 1318783485}
   m_Father: {fileID: 209961321}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 184, y: -39}
-  m_SizeDelta: {x: 50, y: 7}
+  m_SizeDelta: {x: 50, y: 9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1554162786
 MonoBehaviour:
@@ -2813,6 +2830,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1554162787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554162784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c004a8c38a21a4c8720122eee0fdae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1554162786}
 --- !u!1 &1718640402
 GameObject:
   m_ObjectHideFlags: 0
@@ -3626,6 +3656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  damage: 12
   maxHealth: 120
   currentHealth: 0
 --- !u!58 &2473475201364671429
@@ -3733,6 +3764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  damage: 12
   maxHealth: 300
   currentHealth: 0
 --- !u!70 &2586561855860565162
@@ -3892,6 +3924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
+  damage: 12
   maxHealth: 80
   currentHealth: 0
 --- !u!58 &5745790151197145716

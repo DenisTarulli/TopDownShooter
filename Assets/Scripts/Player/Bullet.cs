@@ -7,11 +7,11 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private GameObject hitEffect;
     private const string IS_ENEMY = "Enemy";
-    private PlayerAimWeapon playerStats;
+    private PlayerStats playerStats;
 
     private void Start()
     {
-        playerStats = FindObjectOfType<PlayerAimWeapon>();
+        playerStats = FindObjectOfType<PlayerStats>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
