@@ -12,6 +12,7 @@ public class PlayerAimWeapon : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireRate = 15f;
+    public float bulletDamage = 15f;
     private float nextTimeToFire = 0f;
 
     private void Awake()

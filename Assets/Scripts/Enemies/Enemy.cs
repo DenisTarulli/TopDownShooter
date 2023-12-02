@@ -7,11 +7,14 @@ public class Enemy : MonoBehaviour
 {
     private Transform player;
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private float currentHealth = 0f;
 
     private Animator animator;
 
     private void Start()
     {
+        currentHealth = maxHealth;
         player = FindObjectOfType<PlayerActions>().transform;
         animator = GetComponent<Animator>();
     }
@@ -31,4 +34,14 @@ public class Enemy : MonoBehaviour
         animator.SetFloat("yDir", moveDir.y);
     }
 
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        Debug.Log(gameObject.name + " HP: " + currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

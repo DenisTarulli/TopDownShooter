@@ -802,6 +802,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8334186254695525936, guid: 68cc29d337fed4f4a9d80c673eb10e04, type: 3}
   firePoint: {fileID: 2145336061}
   fireRate: 5
+  bulletDamage: 15
 --- !u!70 &754778637
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1968,7 +1969,7 @@ GameObject:
   - component: {fileID: 2473475201364671428}
   m_Layer: 0
   m_Name: GreenMonster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2074,6 +2075,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  maxHealth: 100
+  currentHealth: 0
 --- !u!58 &2473475201364671429
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2124,7 +2127,7 @@ GameObject:
   - component: {fileID: 2586561855860565161}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2178,6 +2181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  maxHealth: 100
+  currentHealth: 0
 --- !u!70 &2586561855860565162
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2249,7 +2254,7 @@ GameObject:
   - component: {fileID: 5745790151197145715}
   m_Layer: 0
   m_Name: FlyingMonster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2334,6 +2339,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
+  maxHealth: 100
+  currentHealth: 0
 --- !u!58 &5745790151197145716
 CircleCollider2D:
   m_ObjectHideFlags: 0
