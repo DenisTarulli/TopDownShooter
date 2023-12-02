@@ -1,15 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Enemy : MonoBehaviour
+public class FlyingEnemy : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float damage = 12f;
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float currentHealth = 0f;
-    [SerializeField] private float attackRange = 2.5f;
+    [SerializeField] private float meleeRange = 2.5f;
+    [SerializeField] private float attackRange = 9f;
+    [SerializeField] private float stopDistance = 7f;
+    [SerializeField] private float fireRate = 5f;
+    [SerializeField] private float bulletForce = 5f;
+    [SerializeField] private GameObject proyectile;
+    [SerializeField] private Transform aim;
+    [SerializeField] private Transform playerHitboxCenter;
+    private float nextTimeToFire = 0f;
     private float distance;
     private Vector3 moveDirection;
     private bool isAttacking = false;
@@ -36,21 +45,39 @@ public class Enemy : MonoBehaviour
     }
 
     private void Update()
-    {
+    {        
+        distance = Vector3.Distance(transform.position, player.transform.position);
+
         if (!isAttacking)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
-
-            moveDirection = (player.transform.position - transform.position).normalized;
-
+            if (distance > stopDistance)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+                moveDirection = (player.transform.position - transform.position).normalized;
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, transform.position, moveSpeed * Time.deltaTime);
+                moveDirection = (player.transform.position - transform.position).normalized;
+            }
+            
             SetAnimation(moveDirection);
         }
 
-        distance = Vector3.Distance(transform.position, player.transform.position);
+        Vector3 aimDirection = (player.transform.position - aim.transform.position).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        aim.eulerAngles = new Vector3(0, 0, angle);
+
+        if (distance <= attackRange && Time.time >= nextTimeToFire)
+        {
+            nextTimeToFire = Time.time + 1f / fireRate;
+            Shoot();
+        }
+
     }
 
     private void SetAnimation(Vector3 moveDir)
-    {     
+    {
         animator.SetFloat(X_DIR, moveDir.x);
         animator.SetFloat(Y_DIR, moveDir.y);
     }
@@ -67,6 +94,17 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void Shoot()
+    {
+        GameObject enemyBullet = Instantiate(proyectile, aim.transform.position, aim.rotation);
+
+        Rigidbody2D enemyBulletRb = enemyBullet.GetComponent<Rigidbody2D>();
+
+        enemyBulletRb.AddForce(aim.right * bulletForce, ForceMode2D.Impulse);
+
+        Destroy(enemyBullet, 4f);
+    }
+
     private IEnumerator Attack(Vector3 moveDir)
     {
         isAttacking = true;
@@ -77,7 +115,7 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(0.24f);
 
-        if (distance <= attackRange)
+        if (distance <= meleeRange)
             playerStats.TakeDamage(damage);
 
         yield return new WaitForSeconds(0.36f);

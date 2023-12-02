@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private GameObject hitEffect;
     private const string IS_ENEMY = "Enemy";
+    private const string IS_FLYING_ENEMY = "FlyingEnemy";
     private PlayerStats playerStats;
 
     private void Start()
@@ -21,6 +22,11 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag(IS_ENEMY))
         {
             collision.gameObject.GetComponent<Enemy>().TakeDamage(playerStats.bulletDamage);
+        }
+
+        if (collision.gameObject.CompareTag(IS_FLYING_ENEMY))
+        {
+            collision.gameObject.GetComponent<FlyingEnemy>().TakeDamage(playerStats.bulletDamage);
         }
 
         Destroy(hitFx, 1f);

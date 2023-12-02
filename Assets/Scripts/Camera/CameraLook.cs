@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class CameraLook : MonoBehaviour
 {
-    [SerializeField] private float orthographicSizeMin = 5;
-    [SerializeField] private float orthographicSizeMax = 8;
+    [SerializeField] private float orthographicSizeMin = 6;
+    [SerializeField] private float orthographicSizeMax = 8.5f;
     private CinemachineVirtualCamera cinemachineVirtualCamera;
     private float targetOrthographicSize;
 
