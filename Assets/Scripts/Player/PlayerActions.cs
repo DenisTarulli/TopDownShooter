@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerActions : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 7f;
+    [SerializeField] private GameObject spawner;
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -30,6 +31,11 @@ public class PlayerActions : MonoBehaviour
         moveDirection = new Vector3(xInput, yInput, 0f).normalized;
 
         SetAnimation(moveDirection);
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {            
+            spawner.SetActive(true);
+        }
     }
 
     private void FixedUpdate()
