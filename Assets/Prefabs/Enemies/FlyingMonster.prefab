@@ -517,8 +517,8 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   meleeRange: 2.5
-  attackRange: 4.7
-  stopDistance: 4.7
+  attackRange: 7
+  stopDistance: 6.5
   fireRate: 2
   bulletForce: 7.5
   proyectile: {fileID: 8485355126201707545, guid: 3723a8791df316d419faac6cb0fb67c5, type: 3}
