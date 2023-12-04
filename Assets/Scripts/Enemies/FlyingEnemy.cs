@@ -15,6 +15,7 @@ public class FlyingEnemy : MonoBehaviour
     [SerializeField] private float stopDistance = 7f;
     [SerializeField] private float fireRate = 5f;
     [SerializeField] private float bulletForce = 5f;
+    [SerializeField] private float xpGiven;
     [SerializeField] private GameObject proyectile;
     [SerializeField] private Transform aim;
     [SerializeField] private Transform playerHitboxCenter;
@@ -90,6 +91,7 @@ public class FlyingEnemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            playerStats.GainExp(xpGiven);
             Destroy(gameObject);
         }
     }
@@ -102,7 +104,7 @@ public class FlyingEnemy : MonoBehaviour
 
         enemyBulletRb.AddForce(aim.right * bulletForce, ForceMode2D.Impulse);
 
-        Destroy(enemyBullet, 4f);
+        Destroy(enemyBullet, 2.5f);
     }
 
     private IEnumerator Attack(Vector3 moveDir)

@@ -7,6 +7,7 @@ public class CameraLook : MonoBehaviour
 {
     [SerializeField] private float orthographicSizeMin = 6;
     [SerializeField] private float orthographicSizeMax = 8.5f;
+    [SerializeField] private PauseMenu pauseMenu;
     private CinemachineVirtualCamera cinemachineVirtualCamera;
     private float targetOrthographicSize;
     private GameManager gameManager;
@@ -19,7 +20,7 @@ public class CameraLook : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager.gameStarted)
+        if (gameManager.gameStarted && !pauseMenu.gameIsPaused)
             Zoom();
     }
 

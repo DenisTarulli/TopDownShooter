@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float currentHealth = 0f;
     [SerializeField] private float attackRange = 2.5f;
+    [SerializeField] private float xpGiven;
     private float distance;
     private Vector3 moveDirection;
     private bool isAttacking = false;
@@ -63,6 +64,7 @@ public class Enemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            playerStats.GainExp(xpGiven);
             Destroy(gameObject);
         }
     }

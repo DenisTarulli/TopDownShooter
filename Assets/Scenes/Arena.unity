@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 195837917}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2120,10 +2120,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1554162787}
+  expBar: {fileID: 777451077}
   bulletDamage: 15
   fireRate: 10
   maxHealth: 100
   currentHealth: 0
+  currentExperience: 0
+  level: 0
 --- !u!1 &777451073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2134,7 +2137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 777451074}
   - component: {fileID: 777451076}
-  - component: {fileID: 777451075}
+  - component: {fileID: 777451077}
   m_Layer: 5
   m_Name: 'Player XP bar '
   m_TagString: Untagged
@@ -2164,19 +2167,6 @@ RectTransform:
   m_AnchoredPosition: {x: 184, y: -88}
   m_SizeDelta: {x: 50, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &777451075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777451073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2c004a8c38a21a4c8720122eee0fdae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 777451076}
 --- !u!114 &777451076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2228,6 +2218,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &777451077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777451073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab7ac2d5f3aca804198a2004e8ca34dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 777451076}
 --- !u!1 &787023616
 GameObject:
   m_ObjectHideFlags: 0
@@ -3101,7 +3104,7 @@ GameObject:
   - component: {fileID: 1078597965}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3617,7 +3620,7 @@ GameObject:
   - component: {fileID: 1227557972}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4030,6 +4033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orthographicSizeMin: 6
   orthographicSizeMax: 12
+  pauseMenu: {fileID: 209961322}
 --- !u!1 &1374957847
 GameObject:
   m_ObjectHideFlags: 0
@@ -4418,7 +4422,7 @@ GameObject:
   - component: {fileID: 1541187921}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

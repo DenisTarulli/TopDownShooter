@@ -263,6 +263,7 @@ MonoBehaviour:
   maxHealth: 120
   currentHealth: 0
   attackRange: 2.5
+  xpGiven: 5
 --- !u!1 &4793980661763683813
 GameObject:
   m_ObjectHideFlags: 0
