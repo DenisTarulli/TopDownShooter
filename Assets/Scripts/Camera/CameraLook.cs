@@ -9,15 +9,18 @@ public class CameraLook : MonoBehaviour
     [SerializeField] private float orthographicSizeMax = 8.5f;
     private CinemachineVirtualCamera cinemachineVirtualCamera;
     private float targetOrthographicSize;
+    private GameManager gameManager;
 
     private void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
     private void Update()
     {
-        Zoom();
+        if (gameManager.gameStarted)
+            Zoom();
     }
 
     private void Zoom()

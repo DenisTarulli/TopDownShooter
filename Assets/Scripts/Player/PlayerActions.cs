@@ -9,11 +9,13 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private PauseMenu pauseMenu;
 
     private Animator anim;
+    private GameManager gameManager;
     private Rigidbody2D rb;
     private Vector3 moveDirection;
 
     private void Awake()
     {
+        gameManager = FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
     }
@@ -26,7 +28,7 @@ public class PlayerActions : MonoBehaviour
 
     private void Update()
     {
-        if (!pauseMenu.gameIsPaused)
+        if (!pauseMenu.gameIsPaused && gameManager.gameStarted)
         {
             float xInput = Input.GetAxisRaw("Horizontal");
             float yInput = Input.GetAxisRaw("Vertical");

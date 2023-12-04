@@ -11,10 +11,16 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject optionsMenu;
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && gameManager.gameStarted)
         {            
             if (gameIsPaused && !inOptions)
                 Resume();

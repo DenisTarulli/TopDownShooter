@@ -9,21 +9,23 @@ public class PlayerAimWeapon : MonoBehaviour
     [SerializeField] private PauseMenu pauseMenu;
     private PlayerStats stats;
     private Transform aimTransform;
+    private GameManager gameManager;
 
     [SerializeField] private float bulletForce = 8f;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
     private float nextTimeToFire = 0f;
 
-    private void Awake()
+    private void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         aimTransform = transform.Find("Aim");
         stats = GetComponent<PlayerStats>();
     }
 
     private void Update()
     {
-        if (!pauseMenu.gameIsPaused)
+        if (!pauseMenu.gameIsPaused && gameManager.gameStarted)
         {
             HandleAiming();
 
