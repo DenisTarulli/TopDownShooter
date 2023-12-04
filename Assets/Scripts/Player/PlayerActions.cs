@@ -6,6 +6,7 @@ public class PlayerActions : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private GameObject spawner;
+    [SerializeField] private PauseMenu pauseMenu;
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -25,17 +26,20 @@ public class PlayerActions : MonoBehaviour
 
     private void Update()
     {
-        float xInput = Input.GetAxisRaw("Horizontal");
-        float yInput = Input.GetAxisRaw("Vertical");        
+        if (!pauseMenu.gameIsPaused)
+        {
+            float xInput = Input.GetAxisRaw("Horizontal");
+            float yInput = Input.GetAxisRaw("Vertical");
 
-        moveDirection = new Vector3(xInput, yInput, 0f).normalized;
+            moveDirection = new Vector3(xInput, yInput, 0f).normalized;
 
-        SetAnimation(moveDirection);
+            SetAnimation(moveDirection);
 
-        if (Input.GetKeyDown(KeyCode.G))
-        {            
-            spawner.SetActive(true);
-        }
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                spawner.SetActive(true);
+            }
+        }        
     }
 
     private void FixedUpdate()

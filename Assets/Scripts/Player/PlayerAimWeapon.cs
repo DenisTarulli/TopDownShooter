@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerAimWeapon : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer gunRenderer;
+    [SerializeField] private PauseMenu pauseMenu;
     private PlayerStats stats;
     private Transform aimTransform;
 
@@ -22,13 +23,16 @@ public class PlayerAimWeapon : MonoBehaviour
 
     private void Update()
     {
-        HandleAiming();
-
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        if (!pauseMenu.gameIsPaused)
         {
-            nextTimeToFire = Time.time + 1f / stats.fireRate;
-            HandleShooting();
-        }
+            HandleAiming();
+
+            if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+            {
+                nextTimeToFire = Time.time + 1f / stats.fireRate;
+                HandleShooting();
+            }
+        }        
     }
 
     private void HandleAiming()
