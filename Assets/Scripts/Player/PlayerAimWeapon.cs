@@ -7,7 +7,7 @@ public class PlayerAimWeapon : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer gunRenderer;
     [SerializeField] private PauseMenu pauseMenu;
-    private PlayerStats stats;
+    private PlayerStats playerStats;
     private Transform aimTransform;
     private GameManager gameManager;
 
@@ -20,7 +20,7 @@ public class PlayerAimWeapon : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         aimTransform = transform.Find("Aim");
-        stats = GetComponent<PlayerStats>();
+        playerStats = GetComponent<PlayerStats>();
     }
 
     private void Update()
@@ -31,7 +31,7 @@ public class PlayerAimWeapon : MonoBehaviour
 
             if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
             {
-                nextTimeToFire = Time.time + 1f / stats.fireRate;
+                nextTimeToFire = Time.time + 1f / playerStats.fireRate;
                 HandleShooting();
             }
         }        
@@ -56,7 +56,7 @@ public class PlayerAimWeapon : MonoBehaviour
 
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
 
-        bulletRb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
+        bulletRb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);        
 
         Destroy(bullet, 1.5f);
     }

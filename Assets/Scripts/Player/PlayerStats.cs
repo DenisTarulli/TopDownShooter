@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private PlayerHealthBar healthBar;
     [SerializeField] private PlayerExpBar expBar;
+    [SerializeField] private TextMeshProUGUI levelText;
     public float bulletDamage = 15f;
     public float fireRate = 15f;
     public float maxHealth = 100f;
@@ -37,6 +39,7 @@ public class PlayerStats : MonoBehaviour
         if (currentExperience >= 100)
         {
             level += 1;
+            levelText.text = level.ToString();
             currentExperience -= 100;
         }
 
