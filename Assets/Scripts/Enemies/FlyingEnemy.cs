@@ -91,6 +91,7 @@ public class FlyingEnemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            playerStats.totalKills += 1;
             playerStats.GainExp(xpGiven);
             Destroy(gameObject);
         }

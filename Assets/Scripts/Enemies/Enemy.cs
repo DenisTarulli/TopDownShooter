@@ -48,6 +48,10 @@ public class Enemy : MonoBehaviour
         }
 
         distance = Vector3.Distance(transform.position, player.transform.position);
+
+        if (distance <= 1f && !isAttacking)        
+            StartCoroutine(Attack(moveDirection));
+        
     }
 
     private void SetAnimation(Vector3 moveDir)
@@ -64,6 +68,7 @@ public class Enemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            playerStats.totalKills += 1;
             playerStats.GainExp(xpGiven);
             Destroy(gameObject);
         }
@@ -79,8 +84,8 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(0.24f);
 
-        if (distance <= attackRange)
-            playerStats.TakeDamage(damage);
+        if (distance <= attackRange && !playerStats.isImmune)        
+            playerStats.TakeDamage(damage);        
 
         yield return new WaitForSeconds(0.36f);
 

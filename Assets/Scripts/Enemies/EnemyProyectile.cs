@@ -12,7 +12,9 @@ public class EnemyProyectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(IS_PLAYER))
         {
-            collision.gameObject.GetComponent<PlayerStats>().TakeDamage(damage);
+            if (!collision.gameObject.GetComponent<PlayerStats>().isImmune)            
+                collision.gameObject.GetComponent<PlayerStats>().TakeDamage(damage);            
+
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag(IS_WALL))

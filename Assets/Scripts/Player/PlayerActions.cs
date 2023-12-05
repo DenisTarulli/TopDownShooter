@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 7f;
+    public float moveSpeed = 7f;
     [SerializeField] private GameObject spawner;
     [SerializeField] private PauseMenu pauseMenu;
 
