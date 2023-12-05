@@ -8,6 +8,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private PlayerHealthBar healthBar;
     [SerializeField] private PlayerExpBar expBar;
     [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private GameObject levelUpEffect;
+    [SerializeField] private Transform canvas;
     public bool isImmune = false;
     public float bulletDamage = 15f;
     public float fireRate = 15f;
@@ -44,6 +46,10 @@ public class PlayerStats : MonoBehaviour
 
         maxExp += 10;
         expBar.SetMaxExp(maxExp);
+
+        GameObject lvlup = Instantiate(levelUpEffect, canvas);
+
+        Destroy(lvlup, 1.2f);
     }
 
     public void TakeDamage(float damage)
