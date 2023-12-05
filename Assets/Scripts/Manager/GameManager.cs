@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool gameStarted = false;
 
     [SerializeField] private float startingTime = 180f;
+    [SerializeField] private Slider volumeSlider;
     private PlayerStats playerStats;
     private PauseMenu pauseMenu;
     private float remainingTime;
@@ -34,6 +36,14 @@ public class GameManager : MonoBehaviour
     {
         playerStats = FindObjectOfType<PlayerStats>();
         pauseMenu = FindObjectOfType<PauseMenu>();
+
+        if (!PlayerPrefs.HasKey("musicVolume"))
+        {
+            PlayerPrefs.SetFloat("musicVolume", 1);
+            Load();
+        }
+        else
+            Load();
     }
 
     private void Update()
@@ -49,6 +59,7 @@ public class GameManager : MonoBehaviour
     {
         rulesUI.SetActive(false);
         Time.timeScale = 1f;
+        AudioManager.instance.Play("ClickUI");
         gameStarted = true;
         spawner.SetActive(true);
     }
@@ -87,5 +98,21 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene("Arena");
+    }
+
+    public void ChangeVolume()
+    {
+        AudioListener.volume = volumeSlider.value;
+        Save();
+    }
+
+    private void Load()
+    {
+        volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
+    }
+
+    private void Save()
+    {
+        PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
     }
 }

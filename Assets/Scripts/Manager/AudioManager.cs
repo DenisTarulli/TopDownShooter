@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     private void Awake()
-    {
+    {        
         if (instance == null)
             instance = this;
         else
@@ -32,13 +32,26 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void StopPlaying(string sound)
+    {
+        Sound s = Array.Find(sounds, item => item.name == sound);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+
+        s.source.Stop();
+    }
+
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s != null)
+        if (s == null)
         {
             Debug.LogWarning($"Sound: {name} was not found!");
         }
+
         s.source.Play();
     }
 }

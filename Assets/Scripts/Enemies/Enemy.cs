@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
 
         distance = Vector3.Distance(transform.position, player.transform.position);
 
-        if (distance <= 1f && !isAttacking)        
+        if (distance <= 1.2f && !isAttacking)        
             StartCoroutine(Attack(moveDirection));
         
     }

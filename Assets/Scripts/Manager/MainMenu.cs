@@ -8,6 +8,17 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene("Arena");
+        ClickSound();
+    }
+
+    public void ClickSound()
+    {
+        AudioManager.instance.Play("ClickUI");
+    }
+
+    public void BackSound()
+    {
+        AudioManager.instance.Play("BackUI");
     }
 
     public void QuitGame()
