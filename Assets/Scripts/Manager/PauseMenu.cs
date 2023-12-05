@@ -24,8 +24,7 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && gameManager.gameStarted)
         {            
             if (gameIsPaused && !inOptions)
-            {
-                AudioManager.instance.Play("ClickUI");
+            {                
                 Resume();
             }
             else if (!gameIsPaused && !inOptions)
@@ -47,7 +46,8 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;        
+        Time.timeScale = 1f;
+        AudioManager.instance.Play("ClickUI");
         gameIsPaused = false;
     }
 

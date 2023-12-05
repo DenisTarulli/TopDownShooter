@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI expText;
     [SerializeField] private TextMeshProUGUI hitsText;
     [SerializeField] private GameObject spawner;
+    [SerializeField] private Spawner spawnerScript;
     [HideInInspector] public bool gameStarted = false;
 
     [SerializeField] private float startingTime = 180f;
@@ -53,6 +54,8 @@ public class GameManager : MonoBehaviour
 
         if ((playerStats.currentHealth <= 0 || remainingTime <= 1))
             GameOver();
+
+        UpdateSpawnRate();
     }
 
     public void StartGame()
@@ -71,8 +74,26 @@ public class GameManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(remainingTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-        if (remainingTime <= 30)
-            timerText.color = Color.red;
+        if (remainingTime <= 16)
+            timerText.color = Color.red;     
+    }
+
+    private void SetSpawnRate(float minRate, float maxRate)
+    {
+        spawnerScript.minSpawnRate = minRate;
+        spawnerScript.maxSpawnRate = maxRate;
+    }
+
+    private void UpdateSpawnRate()
+    {
+        if (remainingTime <= 15)
+            SetSpawnRate(0.15f, 0.5f);
+
+        else if (remainingTime <= 60)
+            SetSpawnRate(0.2f, 1.2f);
+
+        else if (remainingTime <= 120)
+            SetSpawnRate(0.5f, 1.5f);
     }
 
     private void GameOver()

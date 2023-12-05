@@ -37,8 +37,8 @@ public class PlayerStats : MonoBehaviour
 
     private void LevelUp()
     {
-        bulletDamage += 2;
-        fireRate += 1.5f;
+        bulletDamage += 0.3f;
+        fireRate += 1.7f;
         playerActions.moveSpeed += 0.5f;
 
         currentHealth = maxHealth;

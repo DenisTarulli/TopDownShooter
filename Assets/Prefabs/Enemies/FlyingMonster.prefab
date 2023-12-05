@@ -520,7 +520,7 @@ MonoBehaviour:
   attackRange: 7
   stopDistance: 6.5
   fireRate: 2
-  bulletForce: 7.5
+  bulletForce: 8
   xpGiven: 10
   proyectile: {fileID: 8485355126201707545, guid: 3723a8791df316d419faac6cb0fb67c5, type: 3}
   aim: {fileID: 3774011908408180620}
