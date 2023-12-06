@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -63,7 +62,6 @@ public class PauseMenu : MonoBehaviour
     {
         AudioManager.instance.Play("ClickUI");
         SceneManager.LoadScene("Main menu");
-        gameIsPaused = false;
     }
 
     public void Options()
