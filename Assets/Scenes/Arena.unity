@@ -2340,6 +2340,8 @@ MonoBehaviour:
   hitsText: {fileID: 1830416120}
   spawner: {fileID: 1170923499}
   spawnerScript: {fileID: 1170923500}
+  crosshairCursor: {fileID: 2800000, guid: 1ac5e484a14ab3846bdf51a846efe3e3, type: 3}
+  defaultCursor: {fileID: 2800000, guid: 565e0259239cbff4d8b39e2fd22d0485, type: 3}
   gameStarted: 0
   easy: {fileID: 1895785385}
   medium: {fileID: 1626825352}
@@ -2956,6 +2958,7 @@ MonoBehaviour:
   levelUpEffect: {fileID: 8409567157241661546, guid: 15f173c6229395a46830f39e3bbf91c7, type: 3}
   lvlEffectTransform: {fileID: 228919912}
   damageEffect: {fileID: 8012641875333427961, guid: 141dd5ccc6d00b843893a67bfc5a662e, type: 3}
+  levelEffect: {fileID: 8012641875333427961, guid: 49e3d06b0df450f49a3cc32275e5adfc, type: 3}
   canvas: {fileID: 209961321}
   isImmune: 0
   bulletDamage: 15
@@ -6989,7 +6992,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0:00
+  m_text: 3:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

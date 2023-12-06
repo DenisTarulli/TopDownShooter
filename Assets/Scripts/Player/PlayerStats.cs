@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private GameObject levelUpEffect;
     [SerializeField] private Transform lvlEffectTransform;
     [SerializeField] private GameObject damageEffect;
+    [SerializeField] private GameObject levelEffect;
     [SerializeField] private Transform canvas;
     public bool isImmune = false;
     public float bulletDamage = 15f;
@@ -52,6 +53,10 @@ public class PlayerStats : MonoBehaviour
 
         maxExp += Mathf.Pow((float)(level), 3);
         expBar.SetMaxExp(maxExp);
+
+        GameObject lvlupfx = Instantiate(levelEffect, canvas);
+
+        Destroy(lvlupfx, 1.2f);
 
         GameObject lvlup = Instantiate(levelUpEffect, lvlEffectTransform);
 

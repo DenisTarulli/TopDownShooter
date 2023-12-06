@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hitsText;
     [SerializeField] private GameObject spawner;
     [SerializeField] private Spawner spawnerScript;
+    private Vector2 crosshairHotspot;
+    private Vector2 defaultHotspot;
+    [SerializeField] private Texture2D crosshairCursor;
+    [SerializeField] private Texture2D defaultCursor;
     [HideInInspector] public bool gameStarted = false;
 
     [SerializeField] private GameObject easy;
@@ -44,6 +48,9 @@ public class GameManager : MonoBehaviour
         playerStats = FindObjectOfType<PlayerStats>();
         pauseMenu = FindObjectOfType<PauseMenu>();
 
+        crosshairHotspot = new Vector2(crosshairCursor.width / 2, crosshairCursor.height / 2);
+        defaultHotspot = new Vector2(0, 0);
+
         if (!PlayerPrefs.HasKey("musicVolume"))
         {
             PlayerPrefs.SetFloat("musicVolume", 1);
@@ -55,6 +62,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (gameStarted && !gameIsOver && !pauseMenu.gameIsPaused)
+            Cursor.SetCursor(crosshairCursor, crosshairHotspot, CursorMode.Auto);
+        else
+            Cursor.SetCursor(defaultCursor, defaultHotspot, CursorMode.Auto);        
+
         if (gameStarted)
             TimeUpdate();
 
@@ -92,21 +104,21 @@ public class GameManager : MonoBehaviour
 
     private void UpdateSpawnRate()
     {
-        if (remainingTime <= 15)
+        if (remainingTime <= 16)
         {
             SetSpawnRate(0.1f, 0.38f);
             hard.SetActive(false);
             insane.SetActive(true);
         }
 
-        else if (remainingTime <= 60)
+        else if (remainingTime <= 61)
         {
             SetSpawnRate(0.2f, 1.2f);
             medium.SetActive(false);
             hard.SetActive(true);
         }
 
-        else if (remainingTime <= 120)
+        else if (remainingTime <= 121)
         {
             SetSpawnRate(0.5f, 1.5f);
             easy.SetActive(false);
@@ -127,6 +139,11 @@ public class GameManager : MonoBehaviour
         {
             damageAnim[i].SetActive(false);
         }
+
+        GameObject levelAnim = GameObject.FindWithTag("LevelAnim");
+        if (levelAnim != null)
+            levelAnim.SetActive(false);
+        
 
         if (playerStats.currentHealth <= 0)
         {
