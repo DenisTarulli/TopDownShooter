@@ -5,21 +5,26 @@ using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Stats")]
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float damage = 12f;
     [SerializeField] private float maxHealth = 100f;
-    [SerializeField] private float currentHealth = 0f;
+    [SerializeField] private float damage = 12f;
     [SerializeField] private float attackRange = 2.5f;
     [SerializeField] private float xpGiven;
+
+    // Private variables
+    private float currentHealth = 0f;
     private float distance;
     private Vector3 moveDirection;
     private bool isAttacking = false;
 
+    // Tag constants
     private const string IS_PLAYER = "Player";
     private const string X_DIR = "xDir";
     private const string Y_DIR = "yDir";
     private const string IS_ATTACKING = "isAttacking";
 
+    // References
     private GameObject player;
     private Animator animator;
     private EnemyHealthBar healthBar;

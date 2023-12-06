@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
-    public float moveSpeed = 7f;
+    [Header("References")]
     [SerializeField] private GameObject spawner;
     [SerializeField] private PauseMenu pauseMenu;
 
+    [Header("Variables")]
+    public float moveSpeed = 7f;
+
+    // Private references & variables
     private Animator anim;
     private GameManager gameManager;
     private Rigidbody2D rb;

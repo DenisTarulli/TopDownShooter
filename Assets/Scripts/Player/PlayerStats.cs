@@ -5,27 +5,32 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField] private PlayerHealthBar healthBar;
-    [SerializeField] private PlayerExpBar expBar;
-    [SerializeField] private TextMeshProUGUI levelText;
-    [SerializeField] private GameObject levelUpEffect;
-    [SerializeField] private Transform lvlEffectTransform;
-    [SerializeField] private GameObject damageEffect;
-    [SerializeField] private GameObject levelEffect;
-    [SerializeField] private Transform canvas;
-    public bool isImmune = false;
+    [Header("Stats")]
     public float bulletDamage = 15f;
     public float fireRate = 15f;
     public float maxHealth = 100f;
-    public float currentHealth = 0f;
+
+    [Header("References")]
+    [SerializeField] private PlayerHealthBar healthBar;
+    [SerializeField] private PlayerExpBar expBar;
+    [SerializeField] private GameObject levelUpEffect;
+    [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private Transform lvlEffectTransform;
+    [SerializeField] private GameObject levelEffect;
+    [SerializeField] private GameObject damageEffect;
+    [SerializeField] private Transform canvas;
+
+    // Accesible variables
+    [HideInInspector] public bool isImmune = false;
+    [HideInInspector] public float currentHealth = 0f;
+    [HideInInspector] public float currentExperience = 0f;
+    [HideInInspector] public float totalExperience = 0f;
+    [HideInInspector] public int level = 0;
+    [HideInInspector] public int totalKills = 0;
+    [HideInInspector] public int hitsTaken = 0;
+
+    // Private references & variables
     private float maxExp = 100f;
-    public float currentExperience = 0f;
-    public float totalExperience = 0f;
-    public int level = 0;
-    public int totalKills = 0;
-    public int hitsTaken = 0;
-
-
     private PlayerActions playerActions;
 
     private void Start()

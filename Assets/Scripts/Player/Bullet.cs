@@ -6,8 +6,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private GameObject hitEffect;
-    private const string IS_ENEMY = "Enemy";
-    private const string IS_FLYING_ENEMY = "FlyingEnemy";
+
     private PlayerStats playerStats;
 
     private void Start()
@@ -19,12 +18,12 @@ public class Bullet : MonoBehaviour
     {
         GameObject hitFx = Instantiate(hitEffect, transform.position, Quaternion.identity);
 
-        if (collision.gameObject.CompareTag(IS_ENEMY))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<Enemy>().TakeDamage(playerStats.bulletDamage);
         }
 
-        if (collision.gameObject.CompareTag(IS_FLYING_ENEMY))
+        if (collision.gameObject.CompareTag("FlyingEnemy"))
         {
             collision.gameObject.GetComponent<FlyingEnemy>().TakeDamage(playerStats.bulletDamage);
         }

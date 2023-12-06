@@ -935,11 +935,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ffb78e188987e4498b9afd4df78dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameIsPaused: 0
-  inOptions: 0
   pauseMenuUI: {fileID: 787023616}
   optionsMenu: {fileID: 1047288799}
   music: {fileID: 1674151771}
+  gameIsPaused: 0
+  inOptions: 0
 --- !u!1 &228919911
 GameObject:
   m_ObjectHideFlags: 0
@@ -2330,25 +2330,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcadab59110f8e54d8e4000d033708ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rulesUI: {fileID: 1558697238}
   gameOverScreen: {fileID: 1806344376}
   winText: {fileID: 1757102924}
   loseText: {fileID: 2112498447}
-  timerText: {fileID: 1766762509}
   killsText: {fileID: 1479306133}
   expText: {fileID: 360954985}
   hitsText: {fileID: 1830416120}
-  spawner: {fileID: 1170923499}
-  spawnerScript: {fileID: 1170923500}
+  rulesUI: {fileID: 1558697238}
+  timerText: {fileID: 1766762509}
+  difficulties:
+  - {fileID: 1895785385}
+  - {fileID: 1626825352}
+  - {fileID: 76907838}
+  - {fileID: 99022567}
   crosshairCursor: {fileID: 2800000, guid: 1ac5e484a14ab3846bdf51a846efe3e3, type: 3}
   defaultCursor: {fileID: 2800000, guid: 565e0259239cbff4d8b39e2fd22d0485, type: 3}
-  gameStarted: 0
-  easy: {fileID: 1895785385}
-  medium: {fileID: 1626825352}
-  hard: {fileID: 76907838}
-  insane: {fileID: 99022567}
   startingTime: 181
+  spawner: {fileID: 1170923499}
+  spawnerScript: {fileID: 1170923500}
   volumeSlider: {fileID: 356614280}
+  gameStarted: 0
 --- !u!1 &614425342
 GameObject:
   m_ObjectHideFlags: 3
@@ -2840,9 +2841,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2161a69643b07674cbb6048158140cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5.6
   spawner: {fileID: 1170923499}
   pauseMenu: {fileID: 209961322}
+  moveSpeed: 5.6
 --- !u!50 &754778631
 Rigidbody2D:
   serializedVersion: 4
@@ -2900,9 +2901,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa745f25f304a5f4a85d070ab281d3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletForce: 17
   gunRenderer: {fileID: 1119093422}
   pauseMenu: {fileID: 209961322}
-  bulletForce: 17
   bulletPrefab: {fileID: 8334186254695525936, guid: 68cc29d337fed4f4a9d80c673eb10e04, type: 3}
   firePoint: {fileID: 2145336061}
 --- !u!70 &754778637
@@ -2952,18 +2953,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa075176746f2e4aa072d637ddfce97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1554162787}
-  expBar: {fileID: 777451077}
-  levelText: {fileID: 2017878546}
-  levelUpEffect: {fileID: 8409567157241661546, guid: 15f173c6229395a46830f39e3bbf91c7, type: 3}
-  lvlEffectTransform: {fileID: 228919912}
-  damageEffect: {fileID: 8012641875333427961, guid: 141dd5ccc6d00b843893a67bfc5a662e, type: 3}
-  levelEffect: {fileID: 8012641875333427961, guid: 49e3d06b0df450f49a3cc32275e5adfc, type: 3}
-  canvas: {fileID: 209961321}
-  isImmune: 0
   bulletDamage: 15
   fireRate: 4
   maxHealth: 100
+  healthBar: {fileID: 1554162787}
+  expBar: {fileID: 777451077}
+  levelUpEffect: {fileID: 8409567157241661546, guid: 15f173c6229395a46830f39e3bbf91c7, type: 3}
+  levelText: {fileID: 2017878546}
+  lvlEffectTransform: {fileID: 228919912}
+  levelEffect: {fileID: 8012641875333427961, guid: 49e3d06b0df450f49a3cc32275e5adfc, type: 3}
+  damageEffect: {fileID: 8012641875333427961, guid: 141dd5ccc6d00b843893a67bfc5a662e, type: 3}
+  canvas: {fileID: 209961321}
+  isImmune: 0
   currentHealth: 0
   currentExperience: 0
   totalExperience: 0

@@ -9,7 +9,8 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     private void Awake()
-    {        
+    {
+        // Singleton
         if (instance == null)
             instance = this;
         else

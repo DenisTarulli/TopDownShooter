@@ -7,33 +7,41 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject rulesUI;
+    [Header("Game over")]
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject winText;
     [SerializeField] private GameObject loseText;
-    [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI killsText;
     [SerializeField] private TextMeshProUGUI expText;
     [SerializeField] private TextMeshProUGUI hitsText;
-    [SerializeField] private GameObject spawner;
-    [SerializeField] private Spawner spawnerScript;
-    private Vector2 crosshairHotspot;
-    private Vector2 defaultHotspot;
+
+    [Header("Gameplay UI")]
+    [SerializeField] private GameObject rulesUI;
+    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private GameObject[] difficulties;
+
+    [Header("Cursors")]
     [SerializeField] private Texture2D crosshairCursor;
     [SerializeField] private Texture2D defaultCursor;
-    [HideInInspector] public bool gameStarted = false;
+    private Vector2 crosshairHotspot;
+    private Vector2 defaultHotspot;
 
-    [SerializeField] private GameObject easy;
-    [SerializeField] private GameObject medium;
-    [SerializeField] private GameObject hard;
-    [SerializeField] private GameObject insane;
-
-    [SerializeField] private float startingTime = 180f;
+    [Header("Variables & references")]
+    [SerializeField, Range(15f, 181f)] private float startingTime;
+    [SerializeField] private GameObject spawner;
+    [SerializeField] private Spawner spawnerScript;
     [SerializeField] private Slider volumeSlider;
+
+    [HideInInspector] public bool gameStarted = false;
     private PlayerStats playerStats;
     private PauseMenu pauseMenu;
     private float remainingTime;
     private bool gameIsOver;
+
+    // Bools to avoid constant spawn rate update
+    private bool easy = true;
+    private bool medium = false;
+    private bool hard = false;
 
     private void Awake()
     {
@@ -104,25 +112,30 @@ public class GameManager : MonoBehaviour
 
     private void UpdateSpawnRate()
     {
-        if (remainingTime <= 16)
+        if (remainingTime <= 16 && hard)
         {
+            hard = false;
             SetSpawnRate(0.1f, 0.38f);
-            hard.SetActive(false);
-            insane.SetActive(true);
+            difficulties[2].SetActive(false);
+            difficulties[3].SetActive(true);
         }
 
-        else if (remainingTime <= 61)
+        else if (remainingTime <= 61 && medium)
         {
+            medium = false;
+            hard = true;
             SetSpawnRate(0.2f, 1.2f);
-            medium.SetActive(false);
-            hard.SetActive(true);
+            difficulties[1].SetActive(false);
+            difficulties[2].SetActive(true);
         }
 
-        else if (remainingTime <= 121)
+        else if (remainingTime <= 121 && easy)
         {
+            easy = false;
+            medium = true;
             SetSpawnRate(0.5f, 1.5f);
-            easy.SetActive(false);
-            medium.SetActive(true);
+            difficulties[0].SetActive(false);
+            difficulties[1].SetActive(true);
         }
     }
 

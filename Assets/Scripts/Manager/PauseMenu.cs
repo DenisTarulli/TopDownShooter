@@ -5,15 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public bool gameIsPaused = false;
-    public bool inOptions = false;
-
+    [Header("References")]
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private AudioSource music;
+
+    // Private references
     private GameObject[] damageAnim;
     private GameObject levelAnim;
     private GameManager gameManager;
+
+    [HideInInspector] public bool gameIsPaused = false;
+    [HideInInspector] public bool inOptions = false;
 
     private void Start()
     {

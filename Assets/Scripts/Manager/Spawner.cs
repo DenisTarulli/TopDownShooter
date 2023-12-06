@@ -12,9 +12,11 @@ public class Spawner : MonoBehaviour
         public float spawnChance;
     }
 
+    [Header("References")]
     [SerializeField] private SpawnableObject[] objects;
     [SerializeField] private GameObject spawnAnimation;
 
+    [Header("Variables")]
     public float minSpawnRate = 0.75f;
     public float maxSpawnRate = 2f;
 
