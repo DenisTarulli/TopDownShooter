@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private AudioSource music;
+    private GameObject[] damageAnim;
+    private GameObject levelAnim;
     private GameManager gameManager;
 
     private void Start()
@@ -48,10 +50,29 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         AudioManager.instance.Play("ClickUI");
         gameIsPaused = false;
+
+        for (int i = 0; i < damageAnim.Length; i++)
+        {
+            damageAnim[i].SetActive(true);
+        }
+
+        if (levelAnim != null)
+            levelAnim.SetActive(true);
     }
 
     public void Pause()
     {
+        damageAnim = GameObject.FindGameObjectsWithTag("DamageAnim");
+
+        for (int i = 0; i < damageAnim.Length; i++)
+        {
+            damageAnim[i].SetActive(false);
+        }
+
+        levelAnim = GameObject.FindWithTag("LevelAnim");
+        if (levelAnim != null)
+            levelAnim.SetActive(false);
+
         pauseMenuUI.SetActive(true);
         AudioManager.instance.Play("Pause");
         Time.timeScale = 0f;
