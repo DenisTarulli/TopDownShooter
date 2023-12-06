@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Spawner spawnerScript;
     [HideInInspector] public bool gameStarted = false;
 
+    [SerializeField] private GameObject easy;
+    [SerializeField] private GameObject medium;
+    [SerializeField] private GameObject hard;
+    [SerializeField] private GameObject insane;
+
     [SerializeField] private float startingTime = 180f;
     [SerializeField] private Slider volumeSlider;
     private PlayerStats playerStats;
@@ -88,13 +93,25 @@ public class GameManager : MonoBehaviour
     private void UpdateSpawnRate()
     {
         if (remainingTime <= 15)
-            SetSpawnRate(0.15f, 0.5f);
+        {
+            SetSpawnRate(0.1f, 0.38f);
+            hard.SetActive(false);
+            insane.SetActive(true);
+        }
 
         else if (remainingTime <= 60)
+        {
             SetSpawnRate(0.2f, 1.2f);
+            medium.SetActive(false);
+            hard.SetActive(true);
+        }
 
         else if (remainingTime <= 120)
+        {
             SetSpawnRate(0.5f, 1.5f);
+            easy.SetActive(false);
+            medium.SetActive(true);
+        }
     }
 
     private void GameOver()
