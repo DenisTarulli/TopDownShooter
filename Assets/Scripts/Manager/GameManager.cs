@@ -121,6 +121,13 @@ public class GameManager : MonoBehaviour
         pauseMenu.gameIsPaused = true;
         gameOverScreen.SetActive(true);
 
+        GameObject[] damageAnim = GameObject.FindGameObjectsWithTag("DamageAnim");
+
+        for (int i = 0;  i < damageAnim.Length; i++)
+        {
+            damageAnim[i].SetActive(false);
+        }
+
         if (playerStats.currentHealth <= 0)
         {
             AudioManager.instance.Play("Lose");

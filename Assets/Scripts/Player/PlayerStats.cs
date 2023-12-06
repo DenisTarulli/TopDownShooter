@@ -11,6 +11,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private GameObject levelUpEffect;
     [SerializeField] private Transform lvlEffectTransform;
+    [SerializeField] private GameObject damageEffect;
+    [SerializeField] private Transform canvas;
     public bool isImmune = false;
     public float bulletDamage = 15f;
     public float fireRate = 15f;
@@ -58,6 +60,9 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        GameObject dmgEffect = Instantiate(damageEffect, canvas);
+        Destroy(dmgEffect, 1f);
+
         FindObjectOfType<AudioManager>().Play("Hurt");
 
         StartCoroutine(ImmunityTime());

@@ -2747,7 +2747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2955,6 +2955,8 @@ MonoBehaviour:
   levelText: {fileID: 2017878546}
   levelUpEffect: {fileID: 8409567157241661546, guid: 15f173c6229395a46830f39e3bbf91c7, type: 3}
   lvlEffectTransform: {fileID: 228919912}
+  damageEffect: {fileID: 8012641875333427961, guid: 141dd5ccc6d00b843893a67bfc5a662e, type: 3}
+  canvas: {fileID: 209961321}
   isImmune: 0
   bulletDamage: 15
   fireRate: 4
@@ -6614,7 +6616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7076,7 +7078,7 @@ GameObject:
   - component: {fileID: 1806344379}
   - component: {fileID: 1806344378}
   m_Layer: 5
-  m_Name: Win screen
+  m_Name: Game over screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
