@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private PlayerExpBar expBar;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private GameObject levelUpEffect;
-    [SerializeField] private Transform canvas;
+    [SerializeField] private Transform lvlEffectTransform;
     public bool isImmune = false;
     public float bulletDamage = 15f;
     public float fireRate = 15f;
@@ -17,6 +18,7 @@ public class PlayerStats : MonoBehaviour
     public float currentHealth = 0f;
     private float maxExp = 100f;
     public float currentExperience = 0f;
+    public float totalExperience = 0f;
     public int level = 0;
     public int totalKills = 0;
     public int hitsTaken = 0;
@@ -37,23 +39,27 @@ public class PlayerStats : MonoBehaviour
 
     private void LevelUp()
     {
+        FindObjectOfType<AudioManager>().Play("LevelUp");
+
         bulletDamage += 0.3f;
-        fireRate += 1.7f;
-        playerActions.moveSpeed += 0.5f;
+        fireRate += 1.2f;
+        playerActions.moveSpeed += 0.2f;
 
         currentHealth = maxHealth;
         healthBar.SetHealth(currentHealth);
 
-        maxExp += 10;
+        maxExp += Mathf.Pow((float)(level), 3);
         expBar.SetMaxExp(maxExp);
 
-        GameObject lvlup = Instantiate(levelUpEffect, canvas);
+        GameObject lvlup = Instantiate(levelUpEffect, lvlEffectTransform);
 
         Destroy(lvlup, 1.2f);
     }
 
     public void TakeDamage(float damage)
     {
+        FindObjectOfType<AudioManager>().Play("Hurt");
+
         StartCoroutine(ImmunityTime());
 
         currentHealth -= damage;
@@ -64,6 +70,7 @@ public class PlayerStats : MonoBehaviour
     public void GainExp(float exp)
     {
         currentExperience += exp;
+        totalExperience += exp;
 
         if (currentExperience >= maxExp)
         {

@@ -29,7 +29,7 @@ public class PlayerAimWeapon : MonoBehaviour
         {
             HandleAiming();
 
-            if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+            if (Time.time >= nextTimeToFire)
             {
                 nextTimeToFire = Time.time + 1f / playerStats.fireRate;
                 HandleShooting();
@@ -52,6 +52,8 @@ public class PlayerAimWeapon : MonoBehaviour
 
     private void HandleShooting()
     {
+        FindObjectOfType<AudioManager>().Play("Shoot");
+
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();

@@ -49,20 +49,47 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9e42008d53ef60e4fbc41f21e90466fc, type: 3}
     volume: 0.4
     pitch: 1
-    spatialBlend: 0
     loop: 0
     source: {fileID: 0}
   - name: BackUI
     clip: {fileID: 8300000, guid: e0d777d4e1cce7f4d81dd80375fc5b89, type: 3}
     volume: 0.4
     pitch: 1
-    spatialBlend: 0
     loop: 0
     source: {fileID: 0}
   - name: Pause
     clip: {fileID: 8300000, guid: 030838c484e59dd4ba8ea89a495f7b83, type: 3}
     volume: 0.4
     pitch: 0.5
-    spatialBlend: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Shoot
+    clip: {fileID: 8300000, guid: 7b439c42c8a07d24f86c474186a53e32, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LevelUp
+    clip: {fileID: 8300000, guid: cac0b7fd2a84e2647a0f3d74a0c4d0a8, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hurt
+    clip: {fileID: 8300000, guid: 9326d115cad419e4c9a45cf1a2e5f70a, type: 3}
+    volume: 0.5
+    pitch: 1.8
+    loop: 0
+    source: {fileID: 0}
+  - name: Win
+    clip: {fileID: 8300000, guid: 55507abb8ca937845b422ae0e82d54e6, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Lose
+    clip: {fileID: 8300000, guid: b7d2992250df76845914e05fb8609ea8, type: 3}
+    volume: 0.5
+    pitch: 1
     loop: 0
     source: {fileID: 0}

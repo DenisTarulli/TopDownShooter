@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  damage: 12
+  damage: 20
   maxHealth: 120
   currentHealth: 0
   attackRange: 2.5

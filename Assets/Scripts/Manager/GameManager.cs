@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private PlayerStats playerStats;
     private PauseMenu pauseMenu;
     private float remainingTime;
+    private bool gameIsOver;
 
     private void Awake()
     {
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
         if (gameStarted)
             TimeUpdate();
 
-        if ((playerStats.currentHealth <= 0 || remainingTime <= 1))
+        if ((playerStats.currentHealth <= 0 || remainingTime <= 1) && !gameIsOver)
             GameOver();
 
         UpdateSpawnRate();
@@ -98,21 +99,24 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        gameIsOver = true;
         Time.timeScale = 0f;
         pauseMenu.gameIsPaused = true;
         gameOverScreen.SetActive(true);
 
         if (playerStats.currentHealth <= 0)
         {
+            AudioManager.instance.Play("Lose");
             loseText.SetActive(true);
         }
         else
         {
+            AudioManager.instance.Play("Win");
             winText.SetActive(true);
         }
 
         killsText.text = $"Total kills: {playerStats.totalKills}";
-        expText.text = $"EXP gained: {playerStats.currentExperience}";
+        expText.text = $"EXP gained: {playerStats.totalExperience}";
         hitsText.text = $"Hits taken: {playerStats.hitsTaken}";
     }
 
