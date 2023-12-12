@@ -38,13 +38,6 @@ public class PlayerActions : MonoBehaviour
             float yInput = Input.GetAxisRaw("Vertical");
 
             moveDirection = new Vector3(xInput, yInput, 0f).normalized;
-
-            SetAnimation(moveDirection);
-
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                spawner.SetActive(true);
-            }
         }        
     }
 
